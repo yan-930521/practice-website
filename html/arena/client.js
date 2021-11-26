@@ -66,6 +66,11 @@ window.onresize = () =>{
   canvas.height = window.innerHeight;
 }
 
+const Runtime = 70;
+// Preset : 70ms
+// format Math.floor(1000/ 幀數 )
+
+
 // 登陸
 var d1 = document.createElement('div');
 d1.id = 'Tilte';
@@ -324,7 +329,7 @@ socket.on('gameStart', p => {
     bc.innerText = `bullets |　${Blimit - Bcounts} / ${Blimit}`;
     ctrl_x.innerText = `x |　${player['x']}`;
     ctrl_y.innerText = `y | ${player['y']}`;
-  }, 70);
+  }, Runtime);
 
   var checkdead = false;
   socket.on('update', data => {
