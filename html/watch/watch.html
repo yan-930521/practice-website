@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="author" content="sakura">
+    <meta name="keywords" content="rpg,sakura,einfach,櫻2,discord,discord bot,rushia">
+    <meta name="description" content="DD神器">
+    <title>sakura system</title>
+    <link href="watch.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" href=".../img/rushia.ico" type="image/x-icon" />
+    
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <!--
+    <script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+    -->
+  </head>
+  <body>
+    <div class = header> 
+      <nav>
+        <div class = logo-block><div class = logo onclick="location.href= 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'"></div></div>
+        <div class = meau>
+          <ul>
+            <li class = meau-item>
+              <p id = title><input type="text" name = "ytlink" class = "ytlink" placeholder="type yt / twitch link"><button class="addwindow">新增視窗</button><button class="search">Q</button></p>
+              <p><input type="range" name = "winwidth" id = "winwidth" min="0" max="1000" value="500" step="1"></p>
+              <ul class = "status"></ul>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class = container>
+    </div>
+    <div class = flooter>
+    </div>
+    <script src="watch.js"></script>
+  </body>
+</html>

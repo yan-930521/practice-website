@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="author" content="sakura">
+    <meta name="keywords" content="sakura system">
+    <meta name="description" content="sakura system">
+    <meta name="google-site-verification" content="EZcpqz86w7fvPgjJMG15kchBVwj97pWYV8zmAqah3tw" />
+    <title>sakura system</title>
+    <link href="index.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="./img/rushia.ico" type="image/x-icon" />
+  </head>
+  <body class = 'body' >
+    <script>
+      const ary = [
+        './img/shuu.jpg',
+        'https://cdn.discordapp.com/attachments/851125377954742292/852816291417030676/191933427_1412503549136009_991094078069613482_n.png',
+        './img/inori.jpg',
+      ]
+      let body = document.querySelector('.body');
+      body.style.background = `url('${ary[Math.floor(Math.random()*ary.length)]}')`;
+      body.style.backgroundRepeat = 'no-repeat';
+      body.style.backgroundSize = 'cover';
+      body.style.backgroundAttachment = 'fixed';
+      body.style.overflow = 'hidden';
+      function change(t) {
+        if(t.value == "tools") return;
+        if(t.value == 'arena'){
+          location.href='https://website.sakuraeinfach.repl.co/html/arena/'
+          return;
+        }
+        location.href="./html/" + t.value + "/" + t.value + ".html"
+      }
+    </script>
+    <div class = header>
+      <nav>
+        <div class = logo-block><div class = logo onclick="location.href= 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'"></div></div>
+        <div class = meau>
+          <ul>
+            <li class = meau-item>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class = container> 
+      <div id = Tilte>
+        Home
+        <p>
+          <select id =tools onchange ="change(this.options[this.selectedIndex])">
+            <option value="tools">tools</option>
+            <option value="announce">公告欄</option>
+            <option value="watch">視窗管理器</option>
+            <option value="piano">線上鋼琴</option>
+            <option value="arena">arena!</option>
+            <option value="comment">Feedback</option>
+          </select>
+        </p>
+      </div>
+    </div>
+    <div class = flooter>
+    </div>
+    <script src="index.js"></script>
+    <script type="text/javascript">
+      if( top.location != document.location ){
+        // top.location.href = "https://website.sakuraeinfach.repl.co"
+        // 失敗
+        let w = document.querySelector(".header");
+        let p = document.createElement('h1');
+        w.appendChild(p)
+        p.innerHTML = "違法嵌入網頁。";
+      }
+    </script>
+  </body>
+</html>

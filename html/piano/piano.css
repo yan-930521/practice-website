@@ -1,0 +1,145 @@
+body { 
+  background-image : url('../../img/shuu.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  overflow:hidden;
+  background-position: center;
+}
+  
+#Tilte {
+  font-family: sans-serif;
+  font-size: x-large;
+  text-align:center;
+  color: white;
+  width: 135%;
+  height:10px;
+  transform: scale(2);
+}
+
+.logo {
+  width: 20px;
+  height: 20px;
+  background-color: #A561FF;
+  animation-name: logo;
+  animation-duration: 4s;
+  position: relative;
+  animation-iteration-count: infinite;
+}
+
+@keyframes logo  {
+  0%  {background-color: #A561FF; left:  0px; top: 0px}
+  25% {background-color: #FD72AD; left: 30px;top:  0px}
+  50% {background-color: #3498DB; left: 30px;top: 30px}
+  75% {background-color: #34495E; left:  0px;top: 30px}
+  100%{background-color: #A561FF; left:  0px;top:  0px}
+}
+
+ul {
+  list-style-type: none;
+}
+
+.header {
+  height: 52px;
+}
+
+.meau {
+  top: -20px;
+  left: 25px;
+  float: left;
+  position: relative;
+}
+
+.meau-item {
+  font-family: sans-serif;
+  font-size: xx-large;
+  color: #FD72AD;
+  float: left;
+  position: relative;
+}
+
+.container {
+  position: relative;
+  overflow: visible;
+}
+
+.flooter {
+  bottom: 0px;
+  position: absolute;
+}
+
+.inputkey {
+  width: 50%;
+  position: relative;
+}
+
+
+.smallbox {
+  display: inline-block;  
+  bottom: 5%;
+  position: relative;
+}
+
+.keys {
+  width: 50%;
+  font-family: sans-serif;
+  font-size: x-large;
+  text-align:center;
+  color: white;
+  top: 5%;
+  position: relative;
+}
+.au {
+  display: none;
+}
+.keynum {
+  float: left;
+  left: 10%;
+  color: white;
+  font-size: x-large;
+}
+#keynum {
+  font-size: x-large;
+}
+.w {
+  background-color: white;
+  width: 3%;
+  height: 300px;
+}
+.w:hover {
+  background-color: #646464;
+  width: 3%;
+  height: 300px;
+}
+
+.b {
+  background-color: black;
+  width: 3%;
+  height: 250px;
+  top: -25px;
+  position: relative;
+  border-color:white;
+  color: white;
+}
+.b:hover {
+  background-color: #353535;
+  width: 3%;
+  height: 250px;
+  top: -25px;
+  position: relative;
+  border-color:white;
+  color: white;
+}
+
+.smallbox_top_left {
+  display: inline;
+}
+.smallbox_top_right {
+  display: inline;
+}
+.smallbox_bottom_left {
+  display: inline;
+}
+.smallbox_bottom_right {
+  display: inline;
+}

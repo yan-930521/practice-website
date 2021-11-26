@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="author" content="sakura">
+    <meta name="keywords" content="sakura system">
+    <meta name="description" content="sakura system">
+    <meta name="google-site-verification" content="EZcpqz86w7fvPgjJMG15kchBVwj97pWYV8zmAqah3tw" />
+    <title>sakura system</title>
+    <link href="apply.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="./img/rushia.ico" type="image/x-icon" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.3.1/socket.io.js"></script>
+    <script>
+      var socket = io('https://gamesever.sakuraeinfach.repl.co',{
+        "transports": ['websocket']
+      })
+    </script>
+  </head>
+  <body class='body'>
+    <div class=h eader>
+      <nav>
+        <div class=l ogo-block>
+          <div class=l ogo onclick="location.href= 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'"></div>
+          </div>
+        <div class=m eau>
+          <ul>
+            <li class=m eau-item>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class=container>
+      <div id=applyTilte>
+        <div class=data>
+          <p>User name</p>
+          <p><input type="text" name="name" class="name" placeholder="type here"></p>
+        </div>
+        <div class=data>
+          <p>User ID</p>
+          <p><input type="text" name="id" class="id" placeholder="type here"></p>
+        </div>
+        <div class=data id=pw>
+          <p>Password</p>
+          <p><input type="text" name="password" class="password" placeholder="type here"></p>
+          <p>Check Password</p>
+          <p><input type="text" name="password2" class="password2" placeholder="type here"></p>
+          <p id = "text"></p>
+          <p class="get-btn"><input type="button" value="create" ></p>
+        </div>
+      </div>
+    </div>
+    <div class = flooter>
+    </div>
+    <script src="apply.js"></script>
+  </body>
+</html>

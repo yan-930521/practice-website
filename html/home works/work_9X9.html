@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <meta name="author" content="sakura">
+    <meta name="keywords" content="rpg,sakura,einfach,櫻2,discord,discord bot,rushia">
+    <meta name="description" content="sakura rpg數據查詢系統">
+    <title>sakura system</title>
+    <link href="work_9X9.css" rel="stylesheet" type="text/css" />
+    <link rel="icon" href="../img/rushia.ico" type="image/x-icon" />
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+    -->
+  </head>
+  <body class = 'body' >
+    <script>
+      const ary = [
+        '../img/shuu.jpg',
+        'https://cdn.discordapp.com/attachments/851125377954742292/852816291417030676/191933427_1412503549136009_991094078069613482_n.png',
+        '../img/inori.jpg',
+      ]
+      let body = document.querySelector('.body');
+      body.style.background = `url('${ary[Math.floor(Math.random()*ary.length)]}')`;
+      body.style.backgroundRepeat = 'no-repeat';
+      body.style.backgroundSize = 'cover';
+      body.style.backgroundAttachment = 'fixed';
+      body.style.overflow = 'hidden';
+    </script>
+    <div class = header>
+      <nav>
+        <div class = logo-block><div class = logo onclick="location.href= 'https://www.youtube.com/watch?v=dQw4w9WgXcQ'"></div></div>
+        <div class = meau>
+          <ul>
+            <li class = meau-item>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+    <div class = container> 
+      <div id = Tilte>
+        <p id = 'k'></p>
+        <p id = 'T'></p>
+        <p id = 'p'></p>
+        
+        <script>
+          var win = document.querySelector(".container");
+          let k = document.querySelector('#k');
+          let T = document.querySelector('#T');
+          let p = document.querySelector('#p');
+          var score = 0;
+          T.innerHTML = `請看到最後 ^_^`;
+          let str = "";
+          let time = 0;;
+          var tc = 1001;
+          for(let i = 1 ; i < 10 ; i++ ) {
+            for(let j = 1 ; j < 10 ; j++ ) {
+              time += tc;
+              setTimeout(()=>{
+                k.innerHTML = `${i} * ${j}  =  ${i*j}<br>`
+                if(i == 9 && j == 9) {
+                  document.location.href = "https://website.sakuraeinfach.repl.co"
+                }
+                let x = Math.floor(Math.random()*document.body.clientWidth*2)
+                let y = Math.floor(Math.random()*document.body.clientHeight*2)
+                let b = document.createElement('button');
+                b.className = 'bts'
+                b.textContent = "thinking";
+                b.setAttribute('style', `top:${y}px;left:${x}px;`);
+                win.appendChild(b);
+                b.onclick = () => {
+                  score++;
+                  p.innerHTML = `score - ${score}`;
+                  if(score == 50) {
+                    document.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+                  }
+                  win.removeChild(b);
+                }
+              }, time )
+            }
+          }
+        </script>
+      </div>
+    </div>
+    <div class = flooter>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#Tilte {
+  font-family: sans-serif;
+  font-size: x-large;
+  text-align:center;
+  color: white;
+  width: 135%;
+  height:10px;
+  transform: scale(1.5);
+}
+#applyTilte {
+  font-family: sans-serif;
+  font-size: x-large;
+  text-align:left;
+  color: white;
+  width: 135%;
+  height:10px;
+  transform: scale(1.5);
+  left: 50%;
+  position: absolute;
+}
+.data {
+  display: inline-block;
+}
+#pw {
+  position: absolute;
+}
+
+.msg {
+  text-align: center;
+}
+.msg2 {
+  text-align: center;
+}
+.name_check {
+  width: 15%;
+}
+.name_input {
+  width: 25%;
+}
+.canvas {
+  position:absolute;
+  z-index: -1;
+}
+.ctrl-box {
+  float: right;
+  z-index: 999;
+  position:absolute;
+}
+.ctrl {
+  text-align: left;
+}

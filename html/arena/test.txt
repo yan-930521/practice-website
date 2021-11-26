@@ -1,0 +1,250 @@
+class Player {
+  constructor() {
+    this.type = "player"
+    this.name = 'x';
+    this.id = "x";
+    this.r = [];
+    this.x = Math.floor(Math.random() * (ww / 4) + ww / 4);
+    this.y = Math.floor(Math.random() * (wh / 4) + wh / 4);
+    this.status = true;
+    this.speed = 7;
+    this.color = '#3498DB';
+    //this.score = 0;
+    //這是及時的
+    //另外有資料庫統計
+    this.bullets = {};
+  }
+}
+
+class Bullet {
+  constructor() {
+    this.type = "bullet";
+    this.id = 'x';
+    this.r = [];
+    this.x = 0;
+    this.y = 0;
+    this.status = true;
+    this.speed = 14;
+  }
+}
+
+function draw(ob, r) {
+  ctx.beginPath();
+  if (ob['type'] == 'player') {
+    ctx.fillStyle = ob['color'];
+    ctx.arc(ob.x, ob.y, r, 0, Math.PI * 2, true);
+    ctx.fill();
+  } else {
+    ctx.arc(ob.x, ob.y, r, 0, Math.PI * 2, true);
+  }
+
+  ctx.stroke();
+  ctx.save();
+}
+function checkway(x, y) {
+  if (x < y) {
+    return 1;
+  }
+  if (x > y) {
+    return -1;
+  }
+  if (x == y) {
+    return 0;
+  }
+}
+function bg() {
+  ctx.fillStyle = '#3498DB';
+  ctx.fillRect(0, 0, ww, wh)
+  ctx.fillStyle = 'black';
+}
+function getR(b, p) {
+  let a1 = p.x - b.x;
+  let a2 = p.y - b.y;
+  console.log([a1, a2])
+  let a4 = Math.abs(a1) + Math.abs(a2)
+  a2 = a2 / a4;
+  a1 = a1 / a4;
+  console.log([a1, a2])
+  return [a1, a2];
+}
+var canvas = document.createElement('canvas');
+canvas.className = 'canvas'
+let ww = window.innerWidth;
+canvas.width = window.innerWidth;
+let wh = window.innerHeight;
+canvas.height = window.innerHeight;
+var mousex = ww / 2;
+var mousey = wh / 2;
+var ctx = canvas.getContext('2d');
+
+var body = document.querySelector('.body');
+var box = document.createElement('ctrl-box');
+var ctrl = document.createElement('div');
+var ctrl_name = document.createElement('p');
+var ctrl_id = document.createElement('p');
+var ctrl_color = document.createElement('input');
+var ctrl_x = document.createElement('p');
+var ctrl_y = document.createElement('p');
+box.className = 'ctrl-box';
+ctrl.className = 'ctrl';
+
+let start = false;
+var Name = 'x';
+var Id = 'x';
+var iddorname = location.href.split('https://website.sakuraeinfach.repl.co/html/minigame/index.html?')[1]
+if(iddorname.includes('id')) {
+  var Id = iddorname = iddorname.replace('id=','');
+} else if(iddorname.includes('name')){
+  var Name = iddorname.replace('name=','');
+} else {
+  location.href = 'https://website.sakuraeinfach.repl.co/html/minigame/start.html'
+}
+
+ctrl.appendChild(ctrl_name);
+ctrl.appendChild(ctrl_id);
+ctrl.appendChild(ctrl_color);
+ctrl.appendChild(ctrl_x);
+ctrl.appendChild(ctrl_y);
+box.appendChild(ctrl);
+
+const br = 20;
+
+const sr = 5;
+
+var keysDown = {};
+
+var bcount = 0;
+
+var idrecorder = [];
+
+bg();
+
+var player = new Player();
+
+socket.on('Id', d => {
+  if(!start) return;
+  var Id = d.id;
+  player['id'] = Id;
+  ctrl_name.innerText = `name : ${Name}`;
+  ctrl_id.innerText = `ID : ${Id}`;
+  ctrl_color.placeholder = 'color';
+  ctrl_color.onchange = () => {
+    player['color'] = ctrl_color.value;
+  }
+  ctrl_x.innerText = `X ${player['x']}`;
+  ctrl_y.innerText = `Y ${player['y']}`;
+
+  document.onkeydown = e => {
+    keysDown[e.keyCode] = true;
+  }
+
+  document.onkeyup = e => {
+    delete keysDown[e.keyCode];
+  }
+
+  //w 87 s 83 a 65 d 68
+  let clicked = false;
+  document.onclick = e => {
+    if (!player || !player['status'] || clicked ) return;
+    bcount++;
+    let bu = new Bullet();
+    let mouse = { x: e.pageX, y: e.pageY };
+    bu.id = bcount;
+    bu.r = getR(mouse, player);
+    bu.x = player['x'];
+    bu.y = player['y'];
+    player['bullets'][`${bcount}`] = bu;
+    socket.emit('clientupdate', player);
+    idrecorder.push(`${bcount}`);
+    clicked = true;
+    setTimeout(()=>{
+      clicked = false;
+    },500)
+  }
+
+  setInterval(() => {
+    if (player['status']) {
+      if (87 in keysDown) {
+        if (player['y'] >= br) {
+          player['y'] -= player['speed'];
+        }
+      }
+      if (83 in keysDown) {
+        if (player['y'] <= wh - br) {
+          player['y'] += player['speed'];
+        }
+      }
+      if (65 in keysDown) {
+        if (player['x'] >= br) {
+          player['x'] -= player['speed'];
+        }
+      }
+      if (68 in keysDown) {
+        if (player['x'] <= ww - br) {
+          player['x'] += player['speed'];
+        }
+      }
+
+    }
+
+    // 移動子彈
+    for (let b in player['bullets']) {
+      let x = player['bullets'][b]['x'];
+      let y = player['bullets'][b]['y'];
+      let r = player['bullets'][b]['r'];
+      let speed = player['bullets'][b]['speed'];
+      if (x >= br && x <= ww - br) {
+        player['bullets'][b]['x'] -= r[0] * speed;
+      }
+      if (y >= br && y <= wh - br) {
+        player['bullets'][b]['y'] -= r[1] * speed;
+      }
+      if (x < br || x > ww - br || y < br || y > wh - br) {
+        delete player['bullets'][b];
+      }
+    }
+
+    socket.emit('clientupdate', player);
+
+    ctrl_x.innerText = `X ${player['x']}`;
+    ctrl_y.innerText = `Y ${player['y']}`;
+
+  }, 70);
+
+  var checkdead = false;
+  socket.on('update', data => {
+    ctx.clearRect(0, 0, ww, wh);
+    bg();
+
+    for (let i in data[Id]['bullets']) {
+      if (!data[Id]['bullets'][i]['status']) {
+        delete player['bullets'][`${data[Id]['bullets'][i]['id']}`];
+        delete data[Id]['bullets'][i];
+      }
+      /*
+      if (idrecorder.includes(i) && !data[Id]['bullets'][i]) {
+
+      }
+      */
+    }
+
+    player['status'] = data[Id]['status'];
+
+    if (!player['status'] && !checkdead) {
+      checkdead = true;
+      alert('已死亡');
+      return;
+    }
+
+    for (let p in data) {
+      if (data[p]['status']) {
+        draw(data[p], br);
+        for (let b in data[p]['bullets']) {
+          if (!data[p]['bullets'][`${b}`]['status']) continue;
+          draw(data[p]['bullets'][`${b}`], sr);
+        }
+      }
+    }
+  });
+});
+
